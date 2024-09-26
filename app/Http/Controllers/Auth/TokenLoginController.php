@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use OnlineShop\Domain\Entity\UserTokenEntity;
 
-class LoginController extends Controller
+class TokenLoginController extends Controller
 {
     public function index() {
         return view('auth.login', ['error' => '']);

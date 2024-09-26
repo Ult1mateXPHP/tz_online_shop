@@ -3,30 +3,40 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
-use Domain\Entity\UserTokenEntity;
+use OnlineShop\Domain\Entity\UserTokenEntity;
+
+# В РАЗРАБОТКЕ
 
 class LoginController extends Controller
 {
     public function index() {
-        return view('auth.main', ['error' => '0']);
+        return view('auth.login', ['error' => '']);
     }
 
     public function enter(Request $request)
     {
-        if($this->validate(Request::input('token'))) {
+        $token = Request::input('token');
+        $result = $this->validate($token);
+        if(is_object($result)) {
+            Auth::login($result);
             return redirect('/');
         } else {
-            return view('auth.error', ['error' => 'Token not valid']);
+            return view('auth.error', ['error' => $result]);
         }
     }
 
-    private function validate($token) : bool
+    private function validate($token) : User|string
     {
-        $userToken = UserTokenEntity::query()->where('token', '=', $token);
-        if ($userToken->count() == 1) {
-            return true;
+        $userId = UserTokenEntity::query()->where('token', '=', $token)->get('user')->first();
+        if(isset($userId->user)) {
+            $user = User::query()->find($userId->user);
+            return $user;
+        } else {
+            return "Token not valid";
         }
-        return false;
     }
 }

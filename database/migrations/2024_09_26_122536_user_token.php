@@ -11,7 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('user_token', function (Blueprint $table) {
+            $table->id();
+            $table->string('user')->unique();
+            $table->string('token', 15);
+        });
     }
 
     /**
@@ -19,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('user_token');
     }
 };
