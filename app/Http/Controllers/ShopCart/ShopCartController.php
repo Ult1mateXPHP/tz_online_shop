@@ -10,11 +10,16 @@ use OnlineShop\Application\ShopCart\ShopCartApi;
 
 class ShopCartController extends Controller
 {
-    public function index(ShopCartApi $shopCartApi, ProductApi $productApi)
+    public function index(ShopCartApi $shopCartApi)
     {
         $shopcart = $shopCartApi->getShopCart(Auth::id());
         $total = $shopCartApi->getTotal(Auth::id());
-        return view('shopcart.main', ['page_name' => 'Корзина', 'shopcart' => $shopcart, 'items' => $shopcart->count(), 'total' => $total]);
+        return view('shopcart.main', [
+            'page_name' => 'Корзина',
+            'shopcart' => $shopcart,
+            'items' => $shopcart->count(),
+            'total' => $total
+        ]);
     }
 
     public function addNew(Request $request, ShopCartApi $api) {
