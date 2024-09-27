@@ -8,23 +8,11 @@ use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
-    /*
-     * Display register page.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return view('auth.register', ['error' => '']);
     }
 
-    /*
-     * Handle account registration request
-     *
-     * @param RegisterRequest $request
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function register(Request $request)
     {
         $user = User::query()->create($this->validate($request));

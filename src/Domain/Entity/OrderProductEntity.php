@@ -4,6 +4,9 @@ namespace OnlineShop\Domain\Entity;
 
 //use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+// В РАЗРАБОТКЕ
 
 class OrderProductEntity extends Model
 {
@@ -18,4 +21,8 @@ class OrderProductEntity extends Model
         'product',
         'count'
     ];
+
+    public function order() : BelongsTo {
+        return $this->belongsTo('OnlineShop\Domain\Entity\OrderEntity', 'order', 'id');
+    }
 }

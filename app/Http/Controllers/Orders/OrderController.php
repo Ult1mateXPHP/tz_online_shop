@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Orders;
 use App\Http\Controllers\Controller;
 use OnlineShop\Application\ShopCart\ShopCartApi;
 
+// В РАЗРАБОТКЕ
+
 class OrderController extends Controller
 {
     public function index(ShopCartApi $shopCartApi)
