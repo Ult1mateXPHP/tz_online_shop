@@ -11,16 +11,23 @@
                 height: 15rem;
                 padding: 0.5rem;
             }
-            input[type=text] {
+            #username {
                 position: absolute;
                 border: 1px dotted black;
                 width: 49rem;
                 padding: 0.5rem;
                 margin-top: 3rem;
             }
+            #password {
+                position: absolute;
+                border: 1px dotted black;
+                width: 49rem;
+                padding: 0.5rem;
+                margin-top: 6rem;
+            }
             input[type=submit] {
                 position: absolute;
-                margin-top: 6rem;
+                margin-top: 9rem;
                 background-color: white;
                 border-color: black;
                 font-size: large;

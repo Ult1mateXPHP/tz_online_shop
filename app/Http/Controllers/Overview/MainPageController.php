@@ -10,6 +10,6 @@ class MainPageController extends Controller
     public function index(ProductApi $api)
     {
         $products = $api->getProducts();
-        return view('overview.main', ['page_name' => 'Overview', 'products' => $products]);
+        return view('overview.main', ['page_name' => 'Каталог', 'products' => $products]);
     }
 }

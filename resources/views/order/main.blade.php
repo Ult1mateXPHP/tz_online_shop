@@ -6,7 +6,7 @@
                 background-color: grey;
             }
             a {
-                margin-left: 0.5rem;
+                margin-left: 0.3rem;
                 text-decoration: none;
                 color: black;
             }
@@ -77,24 +77,13 @@
                 height: 5rem;
                 border: 1px solid black
             }
-            .item-count {
-                display: flex;
-                position: absolute;
-                width: 6rem;
-                margin-top: 13rem;
-                padding: 0.5rem;
-                margin-left: 15.1rem;
-                height: 2rem;
-                border: 1px solid black;
-                background-color: grey;
-            }
             .item-add {
                 display: flex;
                 position: absolute;
-                width: 50rem;
+                width: 54.9rem;
                 margin-top: 13rem;
                 padding: 0.5rem;
-                margin-left: 21rem;
+                margin-left: 15.1rem;
                 height: 2rem;
                 border: 1px solid black;
                 background-color: grey;
@@ -105,7 +94,7 @@
     @include('overview.partials.navbar')
     @include('overview.partials.side')
     <div class="main">
-        <h3>{{ $page_name }}</h3>
+        <h3>Каталог</h3>
     <div class="items">
         @include('overview.partials.item')
     </div>

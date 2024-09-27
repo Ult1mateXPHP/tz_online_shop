@@ -3,40 +3,57 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
-use OnlineShop\Domain\Entity\UserTokenEntity;
-
-# В РАЗРАБОТКЕ
+use function Laravel\Prompts\error;
 
 class LoginController extends Controller
 {
-    public function index() {
-        return view('auth.login', ['error' => '']);
+    /*
+     * Display login page.
+     *
+     * @return Renderable
+     */
+    public function index()
+    {
+        return view('auth.login', ['route' => 'Login', 'error' => '']);
     }
 
-    public function enter(Request $request)
+    /*
+     * Handle account login request
+     *
+     * @param LoginRequest $request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function login(Request $request)
     {
-        $token = Request::input('token');
-        $result = $this->validate($token);
-        if(is_object($result)) {
-            Auth::login($result);
-            return redirect('/');
-        } else {
-            return view('auth.error', ['error' => $result]);
+        $credentials = [
+            'name' => $request->input('username'),
+            'password' => $request->input('password')
+        ];
+
+        if(!Auth::validate($credentials)) {
+            return redirect()->to('login');
         }
+
+        $user = Auth::getProvider()->retrieveByCredentials($credentials);
+
+        Auth::login($user);
+
+        return $this->authenticated($request, $user);
     }
 
-    private function validate($token) : User|string
+    /*
+     * Handle response after user authenticated
+     *
+     * @param Request $request
+     * @param Auth $user
+     *
+     * @return \Illuminate\Http\Response
+     */
+    protected function authenticated(Request $request, $user)
     {
-        $userId = UserTokenEntity::query()->where('token', '=', $token)->get('user')->first();
-        if(isset($userId->user)) {
-            $user = User::query()->find($userId->user);
-            return $user;
-        } else {
-            return "Token not valid";
-        }
+        return redirect()->intended();
     }
 }
