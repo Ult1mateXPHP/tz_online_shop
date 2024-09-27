@@ -7,8 +7,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use OnlineShop\Application\Product\ProductApi;
 use OnlineShop\Application\ShopCart\ShopCartApi;
-use OnlineShop\Domain\Entity\ProductEntity;
-use function Termwind\terminal;
 
 class ShopCartController extends Controller
 {
