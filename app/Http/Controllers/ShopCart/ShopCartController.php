@@ -18,7 +18,7 @@ class ShopCartController extends Controller
             'page_name' => 'Корзина',
             'shopcart' => $shopcart,
             'items' => $shopcart->count(),
-            'total' => $total
+            'total' => $total,
         ]);
     }
 

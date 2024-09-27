@@ -18,3 +18,8 @@ Route::group(['namespace' => 'App\Http\Controllers\ShopCart'], function() {
    Route::get('/shopcart', 'ShopCartController@index');
    Route::post('/shopcart', 'ShopCartController@addNew');
 });
+
+Route::group(['namespace' => 'App\Http\Controllers\Orders'], function() {
+    Route::get('/orders', 'OrderController@index');
+    //Route::post('/orders', 'OrderController@addNew');
+});
