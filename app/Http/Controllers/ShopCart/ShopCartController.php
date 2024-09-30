@@ -43,7 +43,7 @@ class ShopCartController extends Controller
             'user' => \auth()->user()->id,
             'count' => (int)Request::input('count'),
         ];
-        if ($productApi->validateProduct($shopcart['product'])) {
+        if ($productApi->validateProduct($shopcart)) {
             $shopCartApi->newShopCartItem($shopcart);
         }
         return redirect("/");
