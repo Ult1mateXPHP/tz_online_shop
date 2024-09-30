@@ -4,11 +4,19 @@ namespace App\Http\Controllers\Overview;
 
 use App\Http\Controllers\Controller;
 use OnlineShop\Application\Order\OrderApi;
-use OnlineShop\Application\Overview\ProductApi;
+use OnlineShop\Application\Product\ProductApi;
 use OnlineShop\Application\ShopCart\ShopCartApi;
 
 class MainPageController extends Controller
 {
+    /**
+     * [GET]
+     * Рендер
+     * @param ProductApi $productApi
+     * @param ShopCartApi $shopCartApi
+     * @param OrderApi $orderApi
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\View\View
+     */
     public function index(ProductApi $productApi, ShopCartApi $shopCartApi, OrderApi $orderApi)
     {
         $products = $productApi->getProducts();

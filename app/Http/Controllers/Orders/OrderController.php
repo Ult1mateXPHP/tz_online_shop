@@ -10,6 +10,10 @@ class OrderController extends Controller
 {
     public function index(ShopCartApi $shopCartApi, OrderApi $orderApi)
     {
+        /**
+         * [GET]
+         * Рендер
+         */
         $shopcart = $shopCartApi->getShopCart(auth()->user()->id)->count();
         $order = $orderApi->getOrders(auth()->user()->id);
         return view('order.main', [
@@ -20,6 +24,13 @@ class OrderController extends Controller
         ]);
     }
 
+    /**
+     * [POST]
+     * Создать заказ
+     * @param ShopCartApi $shopCartApi
+     * @param OrderApi $orderApi
+     * @return \Illuminate\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function addNew(ShopCartApi $shopCartApi, OrderApi $orderApi) {
         $products = $shopCartApi->getShopCart(auth()->user()->id);
         $total = $shopCartApi->getTotal(auth()->user()->id);

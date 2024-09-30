@@ -8,11 +8,22 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    /**
+     * [GET]
+     * Рендер
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\View\View
+     */
     public function index()
     {
         return view('auth.login', ['route' => 'Login', 'error' => '']);
     }
 
+    /**
+     * [POST]
+     * Войти
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function login(Request $request)
     {
         $credentials = [
@@ -31,6 +42,12 @@ class LoginController extends Controller
         return $this->authenticated($request, $user);
     }
 
+    /**
+     * Вошел
+     * @param Request $request
+     * @param $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
     protected function authenticated(Request $request, $user)
     {
         return redirect()->intended();

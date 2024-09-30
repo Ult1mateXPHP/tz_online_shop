@@ -9,10 +9,21 @@ use OnlineShop\Domain\Entity\OrderProductEntity;
 
 class OrderApi
 {
+    /**
+     * Получаем все заказы
+     * @param $user
+     * @return Collection|null
+     */
     public function getOrders($user) {
         return $this->_get($user);
     }
 
+    /**
+     * Создаем заказ
+     * @param $order
+     * @param $products
+     * @return void
+     */
     public function newOrder($order ,$products) : void {
         $order_id = $this->_add($order);
         foreach($products as $product) {

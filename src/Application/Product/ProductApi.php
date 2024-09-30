@@ -6,11 +6,29 @@ use OnlineShop\Domain\Entity\ProductEntity;
 
 class ProductApi
 {
+    /**
+     * Получаем все товары
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getProducts() {
+        return ProductEntity::all();
+    }
+
+    /**
+     * Получаем конкретный товар
+     * @param $product
+     * @return ProductEntity
+     */
     public function getProduct($product) {
         return $this->_get($product);
     }
 
-    public function validateShopCart($shopcart)
+    /**
+     * Проверям существует ли товар
+     * @param $shopcart
+     * @return bool
+     */
+    public function validateProduct($shopcart)
     {
         $product = $this->_get($shopcart['product']);
         if(isset($product->id)) {

@@ -11,6 +11,12 @@ use OnlineShop\Domain\Entity\ShopCartProductEntity;
 
 class ShopCartController extends Controller
 {
+    /**
+     * [GET]
+     * Рендер
+     * @param ShopCartApi $shopCartApi
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\View\View
+     */
     public function index(ShopCartApi $shopCartApi)
     {
         $shopcart = $shopCartApi->getShopCart(Auth::id());
@@ -23,6 +29,13 @@ class ShopCartController extends Controller
         ]);
     }
 
+    /**
+     * [POST]
+     * Добавить товар в корзину
+     * @param ShopCartApi $shopCartApi
+     * @param ProductApi $productApi
+     * @return \Illuminate\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function addNew(ShopCartApi $shopCartApi, ProductApi $productApi)
     {
         $shopcart = [
@@ -30,7 +43,7 @@ class ShopCartController extends Controller
             'user' => \auth()->user()->id,
             'count' => (int)Request::input('count'),
         ];
-        if ($productApi->validateShopCart($shopcart)) {
+        if ($productApi->validateProduct($shopcart['product'])) {
             $shopCartApi->newShopCartItem($shopcart);
         }
         return redirect("/");
