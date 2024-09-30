@@ -17,7 +17,7 @@ class OrderApi
     }
 
     private function _get($user) : Collection|null {
-        return OrderEntity::query()->where('user', '=', $user)->get();
+        return OrderEntity::with('products')->where('user', '=', $user)->get();
     }
 
     private function _add($order) : void {

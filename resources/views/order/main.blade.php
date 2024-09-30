@@ -91,17 +91,17 @@
         </style>
     </head>
     <body>
-    @include('overview.partials.navbar')
-    @include('overview.partials.side')
+    @include('order.partials.navbar')
+    @include('order.partials.side')
     <div class="main">
         <h3>Каталог</h3>
     <div class="items">
-        @include('overview.partials.item')
+        @include('order.partials.item')
     </div>
     </div>
     </body>
     <hr>
     <footer>
-        @include('overview.partials.footer')
+        @include('order.partials.footer')
     </footer>
 </html>
