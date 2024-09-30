@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('shop_cart_product', function (Blueprint $table) {
             $table->id();
-            $table->integer('shopcart');
+            $table->integer('user');
             $table->integer('product');
             $table->integer('count');
         });
