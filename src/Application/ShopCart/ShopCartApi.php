@@ -3,12 +3,13 @@
 namespace OnlineShop\Application\ShopCart;
 
 use Illuminate\Database\Eloquent\Collection;
+use OnlineShop\Application\Product\ProductApi;
 use OnlineShop\Domain\Entity\ShopCartProductEntity;
 
 class ShopCartApi
 {
-    public function getShopCart($shopcart) {
-        return $this->_get($shopcart);
+    public function getShopCart($user) {
+        return $this->_getByUser($user);
     }
 
     public function newShopCartItem($shopcart) : void {
@@ -16,15 +17,15 @@ class ShopCartApi
     }
 
     public function getTotal($user) {
-        $items = $this->_get($user);
+        $shopcart = $this->_getByUser($user);
         $total = 0;
-        foreach($items as $item) {
-            $total = $total + ($item->count*$item->product_entity->price);
+        foreach($shopcart as $item) {
+            $total = $total + ($item->product_entity->price*$item->count);
         }
         return $total;
     }
 
-    private function _get($user) : Collection|null {
+    private function _getByUser($user) : Collection|null {
         return ShopCartProductEntity::with('product_entity')->where('user', '=', $user)->get();
     }
 
@@ -34,5 +35,13 @@ class ShopCartApi
         $entity->product = $shopcart['product'];
         $entity->count = $shopcart['count'];
         $entity->save();
+    }
+
+    public function clearShopCart($user) : void {
+        $this->_clear($user);
+    }
+
+    private function _clear($user) : void {
+        ShopCartProductEntity::query()->where('user', '=', $user)->delete();
     }
 }

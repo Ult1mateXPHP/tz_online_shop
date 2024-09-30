@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use OnlineShop\Application\Order\OrderApi;
 use OnlineShop\Application\ShopCart\ShopCartApi;
 
-// В РАЗРАБОТКЕ
-
 class OrderController extends Controller
 {
     public function index(ShopCartApi $shopCartApi, OrderApi $orderApi)
@@ -20,5 +18,17 @@ class OrderController extends Controller
             'orders' => $order,
             'count' => $order->count()
         ]);
+    }
+
+    public function addNew(ShopCartApi $shopCartApi, OrderApi $orderApi) {
+        $products = $shopCartApi->getShopCart(auth()->user()->id);
+        $total = $shopCartApi->getTotal(auth()->user()->id);
+        $order = [
+            'user' => auth()->user()->id,
+            'price' => $total,
+            'status' => 0
+        ];
+        $orderApi->newOrder($order, $products);
+        return redirect("/");
     }
 }

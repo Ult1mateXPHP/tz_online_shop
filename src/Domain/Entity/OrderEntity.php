@@ -5,8 +5,7 @@ namespace OnlineShop\Domain\Entity;
 //use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-
-// В РАЗРАБОТКЕ
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class OrderEntity extends Model
 {
@@ -22,7 +21,14 @@ class OrderEntity extends Model
         'status'
     ];
 
-    public function products() : HasMany {
-        return $this->hasMany('OnlineShop\Domain\Entity\OrderProductEntity', 'id', 'order');
+    public function products() : HasManyThrough {
+        return $this->hasManyThrough(
+            'OnlineShop\Domain\Entity\ProductEntity' ,
+            'OnlineShop\Domain\Entity\OrderProductEntity',
+            'order',
+            'id',
+            'id',
+            'product'
+        );
     }
 }

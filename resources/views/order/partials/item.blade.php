@@ -2,14 +2,16 @@
     <h3>Список заказов пуст</h3>
 @endif
 @foreach($orders as $order)
-    <div class="item">
-        <p class="item-img">Изображение</p>
-        <p class="item-name">Наименование: {{ $order->id }}</p>
-        <p class="item-price">Цена: {{ $order->price }}</p>
-        <div>
-            <p class="order-item">{{ $order->product->name }}</p>
-            <p class="order-item">{{ $order->product->count }}</p>
-            <p class="order-item">{{ $order->product->price }}</p>
+    <div class="order">
+        <p class="order-id">Номер Заказа: {{ $order->id }}</p>
+        <div class="order-items">
+            <p>Состав заказа</p>
+            @foreach($order->products as $product)
+                <p class="order-item-name">Товар: {{ $product->name }}</p>
+                <p class="order-item-count">Количество: {{ $product->count }}</p>
+                <p class="order-item-price">Цена: {{ $product->price }}</p>
+            @endforeach
         </div>
+        <p class="order-total">Итого: {{ $order->price }}</p>
     </div>
 @endforeach

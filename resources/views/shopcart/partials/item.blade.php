@@ -11,3 +11,9 @@
 @endforeach
 <h3>Итого: {{ $total }}</h3>
 @endif
+@if($items > 0)
+<form method="POST" action="/orders">
+    <input class="create-order" type="submit" value="Сделать заказ">
+    @csrf
+</form>
+@endif

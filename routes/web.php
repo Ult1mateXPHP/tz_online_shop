@@ -21,5 +21,5 @@ Route::group(['namespace' => 'App\Http\Controllers\ShopCart'], function() {
 
 Route::group(['namespace' => 'App\Http\Controllers\Orders'], function() {
     Route::get('/orders', 'OrderController@index');
-    //Route::post('/orders', 'OrderController@addNew');
+    Route::post('/orders', 'OrderController@addNew');
 });

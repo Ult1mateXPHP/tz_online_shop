@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use OnlineShop\Application\Product\ProductApi;
 use OnlineShop\Application\ShopCart\ShopCartApi;
+use OnlineShop\Domain\Entity\ShopCartProductEntity;
 
 class ShopCartController extends Controller
 {
@@ -22,25 +23,16 @@ class ShopCartController extends Controller
         ]);
     }
 
-    public function addNew(Request $request, ShopCartApi $api) {
+    public function addNew(ShopCartApi $shopCartApi, ProductApi $productApi)
+    {
         $shopcart = [
-            'product' => (int) Request::input('product'),
+            'product' => (int)Request::input('product'),
             'user' => \auth()->user()->id,
-            'count' => (int) Request::input('count'),
+            'count' => (int)Request::input('count'),
         ];
-        if($this->validate($shopcart)) {
-            $api->newShopCartItem($shopcart);
+        if ($productApi->validateShopCart($shopcart)) {
+            $shopCartApi->newShopCartItem($shopcart);
         }
         return redirect("/");
-    }
-
-    private function validate($shopcart)
-    {
-        $api = new ProductApi();
-        $product = $api->getProduct($shopcart['product']);
-        if(isset($product->id)) {
-            return true;
-        }
-        return false;
     }
 }

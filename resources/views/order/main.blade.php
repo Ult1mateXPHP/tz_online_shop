@@ -16,13 +16,14 @@
                 height: 1.5rem;
             }
             .items {
-                border: 1px solid black;
             }
-            .item {
+            .order {
                 display: flex;
                 width: 71rem;
-                height: 15rem;
-                border: 1px solid black;
+                height: auto;
+                border: 3px solid black;
+                flex-wrap: wrap;
+                margin-top: 2rem;
             }
             .side {
                 display: flex;
@@ -49,44 +50,53 @@
                 margin-left: 9rem;
                 background-color: #808080;
             }
-            .item-img {
+            .order-id {
                 display: flex;
-                position: absolute;
-                width: 15rem;
-                height: 15rem;
                 margin-top: 0;
+                padding: 0.5rem;
+                width: 100%;
+                height: 1rem;
                 border: 1px solid black
             }
-            .item-name {
-                display: flex;
-                position: absolute;
-                margin-top: 0;
-                margin-left: 15.1rem;
-                padding: 0.5rem;
-                width: 54.9rem;
-                height: 6rem;
-                border: 1px solid black
-            }
-            .item-price {
-                display: flex;
-                position: absolute;
-                width: 54.9rem;
-                margin-top: 7rem;
-                padding: 0.5rem;
-                margin-left: 15.1rem;
-                height: 5rem;
-                border: 1px solid black
-            }
-            .item-add {
-                display: flex;
-                position: absolute;
-                width: 54.9rem;
-                margin-top: 13rem;
-                padding: 0.5rem;
-                margin-left: 15.1rem;
-                height: 2rem;
+            .order-items {
                 border: 1px solid black;
-                background-color: grey;
+                height: auto;
+                margin-top: 2rem;
+                width: 100%;
+            }
+            .order-item-name {
+                display: flex;
+                border: 1px solid black;
+                margin-top: 3.5rem;
+                margin-left: 0;
+                margin-bottom: 0;
+                height: auto;
+
+            }
+            .order-item-count {
+                display: flex;
+                border: 1px solid black;
+                margin-left: 0;
+                margin-top: 0;
+                margin-bottom: 0;
+                height: auto;
+
+            }
+            .order-item-price {
+                display: flex;
+                border: 1px solid black;
+                margin-left: 0;
+                margin-top: 0;
+                height: auto;
+
+            }
+            .order-total {
+                display: flex;
+                width: 100%;
+                padding: 0.5rem;
+                margin-left: 0;
+                height: 1rem;
+                border: 1px solid black
             }
         </style>
     </head>

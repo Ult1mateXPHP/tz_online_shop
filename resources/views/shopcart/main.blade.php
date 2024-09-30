@@ -88,6 +88,10 @@
                 border: 1px solid black;
                 background-color: grey;
             }
+            .create-order {
+                background-color: grey;
+                border: 1px solid black;
+            }
         </style>
     </head>
     <body>
