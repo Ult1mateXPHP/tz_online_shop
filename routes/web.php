@@ -19,11 +19,11 @@ Route::group(['namespace' => 'App\Http\Controllers\Product'], function() {
 });
 
 Route::group(['namespace' => 'App\Http\Controllers\ShopCart'], function() {
-   Route::get('/shopcart', 'ShopCartController@index');
-   Route::post('/shopcart', 'ShopCartController@addNew');
+   Route::get('/shopcart', 'ShopCartController@index')->middleware('auth');;
+   Route::post('/shopcart', 'ShopCartController@addNew')->middleware('auth');;
 });
 
 Route::group(['namespace' => 'App\Http\Controllers\Orders'], function() {
-    Route::get('/orders', 'OrderController@index');
-    Route::post('/orders', 'OrderController@addNew');
+    Route::get('/orders', 'OrderController@index')->middleware('auth');;
+    Route::post('/orders', 'OrderController@addNew')->middleware('auth');;
 });
