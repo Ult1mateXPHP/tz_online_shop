@@ -37,6 +37,15 @@ class ProductApi
         return false;
     }
 
+    /**
+     * Генерируем товар(ы)
+     * @param $count
+     * @return void
+     */
+    public function generateProduct($count) : void {
+        $entity = ProductEntity::factory(1);
+    }
+
     private function _get($id) : ProductEntity {
         return ProductEntity::query()->find($id)->first();
     }

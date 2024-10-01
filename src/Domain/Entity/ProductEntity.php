@@ -2,13 +2,14 @@
 
 namespace OnlineShop\Domain\Entity;
 
-//use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Database\Factories\ProductEntityFactory;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class ProductEntity extends Model
 {
-    //use HasFactory;
+    use HasFactory;
 
     protected $table = 'product';
 
@@ -19,4 +20,9 @@ class ProductEntity extends Model
         'price',
         'count'
     ];
+
+    protected static function newFactory() : Factory
+    {
+        return ProductEntityFactory::new();
+    }
 }

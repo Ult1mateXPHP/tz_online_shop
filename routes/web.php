@@ -14,6 +14,10 @@ Route::group(['namespace' => 'App\Http\Controllers\Auth'], function() {
     Route::get('/logout', 'LogoutController@index')->name('auth.logout');
 });
 
+Route::group(['namespace' => 'App\Http\Controllers\Product'], function() {
+    //Route::get('/product/generate/{count}', 'ProductController@generate');
+});
+
 Route::group(['namespace' => 'App\Http\Controllers\ShopCart'], function() {
    Route::get('/shopcart', 'ShopCartController@index');
    Route::post('/shopcart', 'ShopCartController@addNew');
